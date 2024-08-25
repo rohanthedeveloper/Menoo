@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.menoo.navigation.MenooNavigation
 import com.example.menoo.ui.theme.MenooTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +20,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MenooTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                MenooNavigation()
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MenooTheme {
-        Greeting("Android")
-    }
-}
+

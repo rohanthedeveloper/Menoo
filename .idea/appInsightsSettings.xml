@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.menoo" />
+                  <option name="mobileSdkAppId" value="1:184386639834:android:4c8b926b5f49fb09e552e3" />
+                  <option name="projectId" value="menoo-b125c" />
+                  <option name="projectNumber" value="184386639834" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
