@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "184386639834",
+    "project_id": "menoo-b125c",
+    "storage_bucket": "menoo-b125c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184386639834:android:4c8b926b5f49fb09e552e3",
+        "android_client_info": {
+          "package_name": "com.example.menoo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUEs6fNg7F1ahxbapUPl1KKWDkwb3rNb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
