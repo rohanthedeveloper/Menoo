@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.menoo.screens.DetailsScreen
 import com.example.menoo.screens.HomeScreen
+import com.example.menoo.screens.LoginScreen
 import com.example.menoo.screens.ProfileScreen
 import com.example.menoo.screens.SearchScreen
 import com.example.menoo.screens.SplashScreen
@@ -19,7 +20,10 @@ fun MenooNavigation(){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = MenooScreens.SearchScreen.name) {
         composable(MenooScreens.SplashScreen.name){
-            SplashScreen()
+            SplashScreen(navController = navController)
+        }
+        composable(MenooScreens.LoginScreen.name){
+            LoginScreen(navController = navController)
         }
         composable(MenooScreens.HomeScreen.name){
             HomeScreen(navController = navController)

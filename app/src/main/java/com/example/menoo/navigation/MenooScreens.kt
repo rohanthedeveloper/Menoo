@@ -4,6 +4,7 @@ import java.lang.IllegalArgumentException
 
 enum class MenooScreens {
     SplashScreen ,
+    LoginScreen,
     HomeScreen ,
     DetailsScreen ,
     SearchScreen ,
@@ -14,6 +15,7 @@ enum class MenooScreens {
     companion object{
         fun fromRoute(route:String?): MenooScreens = when(route?.substringBefore("/")){
                 SplashScreen.name -> SplashScreen
+                LoginScreen.name -> LoginScreen
                 HomeScreen.name -> HomeScreen
                 DetailsScreen.name -> DetailsScreen
                 SearchScreen.name -> SearchScreen
