@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.menoo.navigation.MenooNavigation
 import com.example.menoo.screens.LoginScreen
+import com.example.menoo.screens.Signupscreen
 import com.example.menoo.screens.SplashScreen
 import com.example.menoo.ui.theme.MenooTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
             ) {
-                LoginScreen()
+                Signupscreen()
             }
         }
     }

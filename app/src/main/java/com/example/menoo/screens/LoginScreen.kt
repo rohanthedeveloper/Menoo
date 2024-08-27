@@ -33,21 +33,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.room.util.TableInfo
+import com.example.menoo.components.MainButton
+import com.example.menoo.components.inputFields
 import com.example.menoo.ui.theme.Montserrat
 
 @Preview
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier , navController: NavController = rememberNavController()) {
-    Surface(modifier = Modifier
-        .fillMaxSize()
-        .background(
-            brush = Brush.verticalGradient(
-                colors = listOf(
-                    Color(0xFFE8F5E9),
-                    Color(0xFFC5E1A5)
-                )
-            )
-        )) {
+    Surface {
         Column(horizontalAlignment = Alignment.CenterHorizontally ,modifier = Modifier
             .fillMaxSize()
             .background(
@@ -65,7 +58,7 @@ fun LoginScreen(modifier: Modifier = Modifier , navController: NavController = r
             Spacer(modifier = Modifier.height(12.dp))
             inputFields(name = "Password")
             Spacer(modifier = Modifier.height(40.dp))
-            LoginButton("Login")
+            MainButton("Login")
             Spacer(modifier = Modifier.height(14.dp))
             Text(text = "Forgot Password", style = TextStyle(textDecoration = TextDecoration.Underline),fontFamily = Montserrat, fontSize = 14.sp , fontWeight = FontWeight.Medium, color = Color(
                 0xFF757575
@@ -77,44 +70,5 @@ fun LoginScreen(modifier: Modifier = Modifier , navController: NavController = r
     }
 }
 
-//@Preview
-@Composable
-fun inputFields(name : String, modifier: Modifier = Modifier){
-    var value by remember {
-        mutableStateOf("")
-    }
-    Column {
-        Text(text = name , fontFamily = Montserrat , fontSize = 16.sp , fontWeight = FontWeight.Medium , color = Color(
-            0xFF757575
-        )
-        )
-        Spacer(modifier = Modifier.height(12.dp))
-        TextField(
-            modifier = Modifier
-                .height(50.dp)
-                .width(300.dp)
-                .border(1.dp, color = Color(0xFFE0E0E0), shape = RoundedCornerShape(8.dp)),
-            value = value,
-            onValueChange = {value = it},
-            shape = RoundedCornerShape(8.dp)
-        )
-    }
-}
 
 
-@Composable
-fun LoginButton(title : String, modifier: Modifier = Modifier) {
-    Button(onClick = { /*TODO*/ } , shape = RoundedCornerShape(8.dp) , colors = ButtonDefaults.buttonColors(Color(
-        0xFF4CAF50
-    )
-    ), modifier = Modifier
-        .height(50.dp)
-        .width(300.dp)) {
-        Text(
-            text = title ,
-            fontFamily = Montserrat ,
-            fontWeight = FontWeight.Bold,
-            fontSize = 18.sp
-        )
-    }
-}
