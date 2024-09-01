@@ -77,6 +77,7 @@ fun SignUpscreen(navController: NavController = rememberNavController(), viewMod
         emailState.value.trim().isNotEmpty() && passwordState.value.trim().isNotEmpty() && userNameState.value.trim().isNotEmpty() && confirmPasswordState.value.trim().isNotEmpty()
     }
     var isPasswordVisible by remember { mutableStateOf(false) }
+    var isPasswordVisible2 by remember { mutableStateOf(false) }
     val passwordFocusRequester = FocusRequester.Default
     val keyboardController = LocalSoftwareKeyboardController.current
     val context = LocalContext.current
@@ -160,12 +161,12 @@ fun SignUpscreen(navController: NavController = rememberNavController(), viewMod
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password ,imeAction = ImeAction.Next),
                         keyboardActions = KeyboardActions.Default,
-                        visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                        visualTransformation = if (isPasswordVisible2) VisualTransformation.None else PasswordVisualTransformation(),
                         trailingIcon = {
                             IconButton(
-                                onClick = { isPasswordVisible = !isPasswordVisible }
+                                onClick = { isPasswordVisible2 = !isPasswordVisible2 }
                             ) {
-                                val painter = if (isPasswordVisible) painterResource(id = R.drawable.eye) else painterResource(id = R.drawable.invisible)
+                                val painter = if (isPasswordVisible2) painterResource(id = R.drawable.eye) else painterResource(id = R.drawable.invisible)
                                 Icon(
                                     painter = painter,
                                     contentDescription = "Toggle Password Visibility",

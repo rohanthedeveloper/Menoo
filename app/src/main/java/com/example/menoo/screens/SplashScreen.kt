@@ -75,20 +75,20 @@ fun Splash(){
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
-            Spacer(modifier = Modifier.height(344.dp))
+            Spacer(modifier = Modifier.height(300.dp))
             Text(
-                text = stringResource(id = R.string.app_name),
+                text = "App\nName",
                 fontSize = 48.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = Montserrat
             )
             Spacer(modifier = Modifier.height(303.dp))
-            Text(
-                text = "a project by \n VIIT students",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.SemiBold,
-                fontFamily = Montserrat
-            )
+//            Text(
+//                text = "a project by \n VIIT students",
+//                fontSize = 12.sp,
+//                fontWeight = FontWeight.SemiBold,
+//                fontFamily = Montserrat
+//            )
         }
     }
 }
