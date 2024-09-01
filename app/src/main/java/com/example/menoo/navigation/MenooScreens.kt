@@ -5,6 +5,7 @@ import java.lang.IllegalArgumentException
 enum class MenooScreens {
     SplashScreen ,
     LoginScreen,
+    SignUpScreen,
     HomeScreen ,
     DetailsScreen ,
     SearchScreen ,
@@ -16,6 +17,7 @@ enum class MenooScreens {
         fun fromRoute(route:String?): MenooScreens = when(route?.substringBefore("/")){
                 SplashScreen.name -> SplashScreen
                 LoginScreen.name -> LoginScreen
+                SignUpScreen.name -> SignUpScreen
                 HomeScreen.name -> HomeScreen
                 DetailsScreen.name -> DetailsScreen
                 SearchScreen.name -> SearchScreen
