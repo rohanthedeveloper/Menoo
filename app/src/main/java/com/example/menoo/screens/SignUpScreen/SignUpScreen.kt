@@ -148,18 +148,40 @@ fun SignUpscreen(navController: NavController = rememberNavController(), viewMod
                 )
                 }
             Spacer(modifier = Modifier.height(12.dp))
-            inputFields(
-                name = "Confirm Password",
-                inputState = confirmPasswordState,
-                keyboardType = KeyboardType.Password
-            )
+                Column{Text(text = "Confirm Password" , fontFamily = Montserrat , fontSize = 16.sp , fontWeight = FontWeight.Medium , color = Color(
+                    0xFF757575
+                )
+                )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    TextField(modifier = Modifier
+                        .height(50.dp)
+                        .width(300.dp)
+                        .border(1.dp, color = Color(0xFFE0E0E0), shape = RoundedCornerShape(8.dp)), value = confirmPasswordState.value , onValueChange = {confirmPasswordState.value = it},shape = RoundedCornerShape(8.dp),
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password ,imeAction = ImeAction.Next),
+                        keyboardActions = KeyboardActions.Default,
+                        visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                        trailingIcon = {
+                            IconButton(
+                                onClick = { isPasswordVisible = !isPasswordVisible }
+                            ) {
+                                val painter = if (isPasswordVisible) painterResource(id = R.drawable.eye) else painterResource(id = R.drawable.invisible)
+                                Icon(
+                                    painter = painter,
+                                    contentDescription = "Toggle Password Visibility",
+                                    modifier = Modifier.size(20.dp)
+                                )
+                            }
+                        }
+                    )
+                }
             Spacer(modifier = Modifier.height(34.dp))
             MainButton(title = "Sign Up", onClick = {
                 if (valid && passwordState.value == confirmPasswordState.value) {
                     viewModel.createUserWithEmailandPassword(emailState.value , passwordState.value , userNameState.value ){
                         navController.navigate(MenooScreens.HomeScreen.name)
                     }
-                    Toast.makeText(context, "Signed in successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Signed up successful", Toast.LENGTH_SHORT).show()
                     navController.navigate(MenooScreens.HomeScreen.name)
                 } else {
                     Toast.makeText(context, "Enter all the credentials", Toast.LENGTH_SHORT).show()
