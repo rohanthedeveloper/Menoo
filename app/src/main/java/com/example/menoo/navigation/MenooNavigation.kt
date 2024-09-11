@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.menoo.screens.DetailsScreen
-import com.example.menoo.screens.HomeScreen
+import com.example.menoo.screens.HomeScreen.HomeScreen
 import com.example.menoo.screens.LoginScreen.LoginScreen
 import com.example.menoo.screens.ProfileScreen
 import com.example.menoo.screens.SearchScreen
