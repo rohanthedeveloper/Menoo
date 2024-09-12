@@ -1,6 +1,5 @@
 package com.example.menoo.screens.HomeScreen
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -15,14 +14,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,28 +31,40 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.menoo.R
+import com.example.menoo.components.catogoryCard
+import com.example.menoo.components.optionButton
+import com.example.menoo.model.Menu
+import com.example.menoo.model.Mess
+import com.example.menoo.model.catogories
+import com.example.menoo.model.menuList
+import com.example.menoo.model.messList
 import com.example.menoo.navigation.MenooScreens
 import com.example.menoo.ui.theme.Montserrat
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(navController: NavController , mess : List<Mess> = messList) {
+    var clicked = false
+    var color = Color(0xFFFFD748)
+//    if(!clicked){
+//        color = Color(0xFFFFD748)
+//    }
+//    else{
+//        color = Color(0xFFFFD748)
+//    }
     Spacer(modifier = Modifier.height(30.dp))
     Surface {
         Column(
@@ -93,6 +106,35 @@ fun HomeScreen(navController: NavController) {
             }
             Spacer(modifier = Modifier.height(9.dp))
             SearchBar(navController = navController)
+            Spacer(modifier = Modifier.height(22.dp))
+            Row {
+                //Spacer(modifier = Modifier.width(30.dp))
+                optionButton(
+                    title = "Mess" ,
+                    onClick = {} ,
+                    modifier = Modifier.padding(start = 30.dp , end = 30.dp).height(40.dp).width(125.dp)
+                )
+                //Spacer(modifier = Modifier.width(155.dp))
+                optionButton(
+                    title = "Tiffin" ,
+                    onClick = {} ,
+                    modifier = Modifier.padding(start = 30.dp , end = 30.dp).height(40.dp).width(125.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(28.dp))
+            LazyRow(state = rememberLazyListState()) {
+                items(catogories){ it ->
+                    catogoryCard(
+                        title = it ,
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(39.dp))
+            LazyColumn {
+                items(messList){ it ->
+                    messCard(name = it.name , item1 = it.item1 , item2 = it.item2)
+                }
+            }
         }
     }
 }
@@ -118,3 +160,129 @@ fun SearchBar(navController: NavController) {
         }
     }
 }
+
+//@Preview
+@Composable
+fun messCard(name : String , item1 : String , item2 : String ) {
+    Card(modifier = Modifier
+        .padding(bottom = 29.dp)
+        .width(327.dp)
+        .height(180.dp)
+        .background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(size = 8.dp)),
+        elevation = CardDefaults.cardElevation(4.dp)
+    ) {
+        Column {
+            Spacer(modifier = Modifier.height(18.dp))
+            Row() {
+                Surface(
+                    modifier = Modifier
+                        .padding(start = 23.dp)
+                        .height(19.dp)
+                        .width(52.dp)
+                        .border(1.dp, color = Color(0xFFFF2508), shape = RoundedCornerShape(8.dp)),
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = "Closed",
+                            style = TextStyle(
+                                fontSize = 10.sp,
+                                fontFamily = Montserrat,
+                                fontWeight = FontWeight(600),
+                                color = Color(0xFF000000),
+                            )
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.width(180.dp))
+                Image(
+                    painter = painterResource(R.drawable.location_icon),
+                    contentDescription = "Locate",
+                    modifier = Modifier.width(32.dp).height(17.dp)
+                )
+                Image(
+                    painter = painterResource(R.drawable.share_icon),
+                    contentDescription = "Share",
+                    modifier = Modifier.width(32.dp).height(17.dp)
+                )
+            }
+            Text(
+                text = name,
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    fontFamily = Montserrat,
+                    fontWeight = FontWeight(800),
+                    color = Color(0xFF000000),
+                ),
+                modifier = Modifier.padding(start = 30.dp, top = 2.dp)
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "Today’s Menu",
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    fontFamily = Montserrat,
+                    fontWeight = FontWeight(700),
+                    color = Color(0xFF4D4B4B),
+                ),
+                modifier = Modifier.padding(start = 37.dp)
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Column(modifier = Modifier.padding(start = 42.dp)) {
+                Text(
+                    item1,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontFamily = Montserrat,
+                        fontWeight = FontWeight.Medium,
+                        color = Color(0xFF000000),
+
+                        )
+                )
+                Spacer(modifier = Modifier.height(2.dp))
+                Text(
+                    item2,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontFamily = Montserrat,
+                        fontWeight = FontWeight.Medium,
+                        color = Color(0xFF000000),
+
+                        )
+                )
+            }
+            Spacer(modifier = Modifier.height(9.dp))
+            Row() {
+                Spacer(modifier = Modifier.width(205.dp))
+            Surface(
+                modifier = Modifier
+                    //.padding(30.dp)
+                    .width(91.dp)
+                    .height(23.dp),
+                color = Color(0xFFFFD748),
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "See Pricing",
+                        style = TextStyle(
+                            fontSize = 12.sp,
+                            fontFamily = Montserrat,
+                            fontWeight = FontWeight(600),
+                            color = Color(0xFF000000),
+                        )
+                    )
+                }
+            }
+        }
+        }
+    }
+}
+
+
